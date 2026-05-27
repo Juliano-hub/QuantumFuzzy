@@ -1,6 +1,3 @@
-# Github original
-https://github.com/qflex-project/quantum-fuzzy
-
 # Quantum-Fuzzy
 O projeto Quantum-Fuzzy busca unir as áreas de Lógica Fuzzy e Computação Quântica, através das propriedades e características que as unem, onde apresentam a incerteza de modos distintos. Analisando os conectivos existentes da Lógica Fuzzy, o projeto Quantum-Fuzzy busca demonstrar com um viés matemático a interpretação destas operações entre Conjuntos Fuzzy utilizando bits e registradores quânticos.
 
@@ -9,7 +6,7 @@ O projeto Quantum-Fuzzy busca unir as áreas de Lógica Fuzzy e Computação Qu�
 O arquivo é responsável por receber o símbolo do operador de uma expressão, com a finalidade de gerar o circuito quântico do algoritmo. É utilizado a classe circ para realizar a análise do parâmetro, assim possibilitando a descrição dos circuitos.
 
 ### Para executar
-python runCirc.py PORTA <br />
+python runCirc.py PORTA
 python runCirc.py AND
 
 ### ./Circ
