@@ -79,40 +79,28 @@ from genCirc import N as N
 
 class Circ:
 	def __init__ (self):
-		#valores iniciais dos qubits
 		entradaFuzzy = "x,y,0"
-		#circuitos fuzzy
-		self.fuzzy = {}
 		self.fuzzy["AND"] = [3, ["pr,pv", "pr,pos", "t,1,2,3", "pr,pos", "m2,3"], entradaFuzzy]
 		self.fuzzy["OR"] = [3, ["pr,pv", "p,1", "p,2", "pr,pos", "t,1,2,3", "p,3", "pr,pos", "m2,3"], entradaFuzzy]
 		self.fuzzy["DIF"] = [3, ["pr,pv", "p,2", "pr,pos", "t,1,2,3", "p,2", "pr,pos", "m2,3"], entradaFuzzy]
 		self.fuzzy["CoDIF"] = [3, ["pr,pv", "p,1", "pr,pos", "t,1,2,3", "p,1", "p,3", "pr,pos", "m2,3"], entradaFuzzy]
 		self.fuzzy["IMPsn"] = [3, ["pr,pv", "p,2", "pr,pos", "t,1,2,3", "p,2", "p,3", "pr,pos", "m2,3"], entradaFuzzy]
 		self.fuzzy["CoIMPsn"] = [3, ["pr,pv", "p,1", "pr,pos", "t,1,2,3", "p,1", "pr,pos", "m2,3"], entradaFuzzy]
-		self.fuzzy["CircFamilia1"] = [3, ["pr,pv", "pr,pos", "c,1,3", "pr,pos", "c,2,3", "pr,pos", "m2,3"], entradaFuzzy]
-		self.fuzzy["CircFamilia2"] = [3, ["pr,pv", "pr,pos", "p,1", "pr,pos", "c,1,3", "pr,pos", "c,2,3", "pr,pos", "m2,3"], entradaFuzzy]
-		self.fuzzy["CircFamilia3"] = [3, ["pr,pv", "pr,pos", "p,2", "c,1,3", "pr,pos", "c,2,3", "pr,pos", "m2,3"], entradaFuzzy]
-		self.fuzzy["CircFamilia4"] = [3, ["pr,pv", "pr,pos", "p,1", "p,2", "c,1,3", "pr,pos", "c,2,3", "pr,pos", "m2,3"], entradaFuzzy]
-		self.fuzzy["CCNOT2"] = [3, ["pr,pv", "pr,pos", "c,2,3", "pr,pos", "c,1,2", "pr,pos", "m2,3"], entradaFuzzy]
-		self.fuzzy["Circ1"] = [3, ["pr,pv", "c,1,3", "pr,pos", "c,2,3", "pr,pos", "m2,3"], entradaFuzzy]
+		self.fuzzy["Possibility"] = [3, ["pr,pv", "pr,pos", "p,2", "pr,pos", "t,1,2,3", "pr,pos", "m2,3"], entradaFuzzy]
 		
-
 		entradaImp = "x,x,y,0,0"
 		self.fuzzy["IMPql"] = [5, ["pr,pv", "pr,pos", "t,2,3,4", "p,4", "pr,pos", "t1,4,5", "p,5", "pr,pos", "m2,5"], entradaImp]
 		self.fuzzy["CoIMPql"] = [5, ["pr,pv", "pr,pos", "p,1", "p,2", "p,3" "t,2,3,4", "p,2", "p,3", "p,4", "pr,pos", "t1,4,5", "p,1", "p,5", "pr,pos", "m2,5"], entradaImp]
 
-		entradaQuiskit = "x,x,0,y,y,0"
-		self.fuzzy["CCNOT"] = [7, ["pr,pv", "pr,pos", "t,1,2,3", "pr,pos", "p,5", "t,4,5,6", "p,5", "pr,pos", "c,6,7", "pr,pos", "c,3,7","pr,pos", "m2,7"], entradaQuiskit]
-
 		entradaXorMenos = "x,y,0,0,0"
-		self.fuzzy["XOR-"] = [5, ["pr,pv", "pr,pos", "p,1", "t,1,2,3" ,"p,1", "pr,pos", "p,2", "t,1,2,4", "p,2", "pr,pos", "p,3", "p,4", "t,3,4,5", "p,3", "p,4", "p,5" "pr,pos", "m2,5"], entradaXorMenos]
-		self.fuzzy["XNOR-"] = [5, ["pr,pv", "pr,pos", "p,2", "t,1,2,3" ,"p,2", "p,3", "pr,pos", "p,1", "t,1,2,4", "p,1", "p,4" "pr,pos", "t,3,4,5", "pr,pos", "m2,5"], entradaXorMenos]
+		self.fuzzy["E-"] = [5, ["pr,pv", "pr,pos", "p,1", "t,1,2,3" ,"p,1", "pr,pos", "p,2", "t,1,2,4", "p,2", "pr,pos", "p,3", "p,4", "t,3,4,5", "p,3", "p,4", "p,5" "pr,pos", "m2,5"], entradaXorMenos]
+		self.fuzzy["D-"] = [5, ["pr,pv", "pr,pos", "p,2", "t,1,2,3" ,"p,2", "p,3", "pr,pos", "p,1", "t,1,2,4", "p,1", "p,4" "pr,pos", "t,3,4,5", "pr,pos", "m2,5"], entradaXorMenos]
 
 		entradaDuplicada = "x,y,x,y"
-		self.fuzzy["XOR+"] = [7, ["pr,pv", "pr,pos", "p,1", "t,1,2,5", "p,1", "pr,pos", "p,4", "t,3,4,6", "p,4", "pr,pos", "p,5", "p,6", "t,5,6,7", "p,5", "p,6", "p,7", "pr,pos", "m2,7"], entradaDuplicada]
-		self.fuzzy["XNOR+"] = [7, ["pr,pv", "pr,pos", "p,2", "t,1,2,5", "p,2", "p,5", "pr,pos", "p,3", "t,3,4,6", "p,3", "p,6", "pr,pos", "t,5,6,7", "pr,pos", "m2,7"], entradaDuplicada]
-		self.fuzzy["XOR*"] = [7, ["pr,pv", "p,1", "p,2", "t,1,2,5", "p,1", "p,2", "p,5", "t,3,4,6", "p,6", "t,5,6,7", "pr,pos", "m2,7"], entradaDuplicada]
-		self.fuzzy["XNOR*"] = [7, ["pr,pv", "t,1,2,5", "pr,pos", "p,3", "p,4", "t,3,4,6", "p,3", "p,4", "pr,pos", "p,5", "p,6", "t,5,6,7", "p5", "p,6", "p,7", "pr,pos", "m2,7"], entradaDuplicada]
+		self.fuzzy["E+"] = [7, ["pr,pv", "pr,pos", "p,1", "t,1,2,5", "p,1", "pr,pos", "p,4", "t,3,4,6", "p,4", "pr,pos", "p,5", "p,6", "t,5,6,7", "p,5", "p,6", "p,7", "pr,pos", "m2,7"], entradaDuplicada]
+		self.fuzzy["D+"] = [7, ["pr,pv", "pr,pos", "p,2", "t,1,2,5", "p,2", "p,5", "pr,pos", "p,3", "t,3,4,6", "p,3", "p,6", "pr,pos", "t,5,6,7", "pr,pos", "m2,7"], entradaDuplicada]
+		self.fuzzy["Ex"] = [7, ["pr,pv", "p,1", "p,2", "t,1,2,5", "p,1", "p,2", "p,5", "t,3,4,6", "p,6", "t,5,6,7", "pr,pos", "m2,7"], entradaDuplicada]
+		self.fuzzy["Dx"] = [7, ["pr,pv", "t,1,2,5", "pr,pos", "p,3", "p,4", "t,3,4,6", "p,3", "p,4", "pr,pos", "p,5", "p,6", "t,5,6,7", "p5", "p,6", "p,7", "pr,pos", "m2,7"], entradaDuplicada]
 		self.fuzzy["eXorCoIMP-"] = [8, ["pr,pv", "t,1,2,4", "p,3", "p,4", "pr,pos", "t,3,4,5", "p,3", "t,1,2,6", "pr,pos", "t,3,6,7", "p,5", "p,7", "pr,pos", "t,5,7,8", "p,8" , "pr,pos", "m2,7"], entradaDuplicada]
 		
 		entradaFuzzySquare = "x,x,y,y"
@@ -122,13 +110,8 @@ class Circ:
 		self.fuzzy["COIMPgn"] = [7, ["pr,pv", "pr,pos", "p,1", "p,2", "t,1,2,5", "p,1", "p,2", "pr,pos", "t,3,4,6", "pr,pos", "t,5,6,7", "pr,pos", "m2,7"], entradaFuzzySquare]
 		self.fuzzy["Overlap"] = [7, ["pr,pv", "t,1,2,5", "pr,pos", "t,3,4,6", "pr,pos", "t,5,6,7", "pr,pos", "m2,7"], entradaFuzzySquare]
 		self.fuzzy["Grouping"] = [7, ["pr,pv", "p,1", "p,2", "t,1,2,5", "p,1", "p,2", "pr,pos", "p,3", "p,4","t,3,4,6", "p,3", "p,4", "pr,pos", "t,5,6,7", "pr,pos", "p,7", "pr,pos", "m2,7"], entradaFuzzySquare]
-		self.fuzzy["XorGroupingOverlap"] = [11, ["pr,pv", "p,1", "p,2", "t,1,2,5", "p,1", "p,2", "p,3", "p,4", "t,3,4,6", "p,3", "p,4", "t,5,6,7", "p,7", "pr,pos", "t,1,2,8", "t,3,4,9", "t,8,9,10", "pr,pos", "p,10", "t,7,10,11", "pr,pos", "m2,11"], entradaFuzzySquare]
-		self.fuzzy["XNORGroupingOverlap"] = [11, ["pr,pv", "t,1,2,5", "t,3,4,6", "t,5,6,7", "p,7", "pr,pos", "p,1", "p,2", "p,3", "p,4", "t,1,2,8", "t,3,4,9", "t,8,9,10" , "p,1", "p,2", "p,3", "p,4","pr,pos", "p,10", "t,7,10,11", "p,11", "pr,pos", "m2,11"], entradaFuzzySquare]
-
-		entradaPoliceOfficer = "x,y,0,0,0"
-		self.fuzzy["CircCecilia"] = [5, ["pr,pv", "pr,pos", "c,1,3", "pr,pos", "c,2,3", "pr,pos", "c,3,5", "pr,pos", "c,4,5", "pr,pos", "m2,5"], entradaPoliceOfficer]
-		entradaPoliceOfficer2 = "x,y"
-		self.fuzzy["CircCecilia2"] = [2, ["pr,pv", "c,1,2", "pr,pos","m2,2"], entradaPoliceOfficer2]
+		self.fuzzy["EGroupingOverlap"] = [11, ["pr,pv", "p,1", "p,2", "t,1,2,5", "p,1", "p,2", "p,3", "p,4", "t,3,4,6", "p,3", "p,4", "t,5,6,7", "p,7", "pr,pos", "t,1,2,8", "t,3,4,9", "t,8,9,10", "pr,pos", "p,10", "t,7,10,11", "pr,pos", "m2,11"], entradaFuzzySquare]
+		self.fuzzy["DGroupingOverlap"] = [11, ["pr,pv", "t,1,2,5", "t,3,4,6", "t,5,6,7", "p,7", "pr,pos", "p,1", "p,2", "p,3", "p,4", "t,1,2,8", "t,3,4,9", "t,8,9,10" , "p,1", "p,2", "p,3", "p,4","pr,pos", "p,10", "t,7,10,11", "p,11", "pr,pos", "m2,11"], entradaFuzzySquare]
 
 		entradaIMPGNO = "x,x,x,x,y,y"
 		self.fuzzy["IMPqlGNO"] = [11, ["pr,pv", "pr,pos", "t,1,2,7" , "t,3,4,8" , "t,5,6,9" , "t,8,9,10" , "t,7,10,11", "pr,pos", "m2,11"], entradaIMPGNO]
@@ -136,7 +119,6 @@ class Circ:
 
 		#circuitos fuzzy intucionista
 		entradaIntucionista = "x1,x2,y1,y2"
-		self.intFuzzy = {}
 		self.intFuzzy["AND"]	= [6, ["pr,pv", "t,1,3,5", "pr,pos", "p,2", "p,4", "t,2,4,6", "p,2", "p,4", "p,6", "pr,pos", "m2,5", "m2,6"], entradaIntucionista]
 		self.intFuzzy["OR"]		= [6, ["pr,pv", "p,1", "p,3", "pr,pos", "t,1,3,5", "pr,pos", "p,1", "p,3", "p,5", "pr,pos", "t,2,4,6", "pr,pos", "m2,5", "m2,6"], entradaIntucionista]
 		self.intFuzzy["IMP"]	= [6, ["pr,pv", "p,2", "p,3", "pr,pos", "t,2,3,5", "pr,pos", "p,2", "p,3", "p,5", "pr,pos", "t,1,4,6", "pr,pos", "m2,5", "m2,6"], entradaIntucionista]
